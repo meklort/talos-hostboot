@@ -432,6 +432,11 @@ fapi2::ReturnCode base_module_type(const fapi2::Target<TARGET_TYPE_DIMM>& i_targ
         {1, fapi2::ENUM_ATTR_EFF_DIMM_TYPE_RDIMM},
         {2, fapi2::ENUM_ATTR_EFF_DIMM_TYPE_UDIMM},
         {4, fapi2::ENUM_ATTR_EFF_DIMM_TYPE_LRDIMM},
+        {5, fapi2::ENUM_ATTR_EFF_DIMM_TYPE_RDIMM}, /* Mini RDIMM */
+        {6, fapi2::ENUM_ATTR_EFF_DIMM_TYPE_UDIMM}, /* Mini UDIMM */
+        /* 0x7: Reserved */
+        {8, fapi2::ENUM_ATTR_EFF_DIMM_TYPE_RDIMM}, /* SO RDIMM */
+        {9, fapi2::ENUM_ATTR_EFF_DIMM_TYPE_UDIMM}, /* SO UDIMM */
         // All others reserved or not supported
     };
 
