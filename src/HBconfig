@@ -29,6 +29,11 @@ config P9_PAGE_TABLE
     help
         Use the P9 version of the page table setup
 
+config CENTAUR
+    default n
+    help
+        Compile with centaur support
+
 config INCLUDE_XML_OPPOWERVM
     default y
     help

@@ -78,7 +78,7 @@
 
 namespace   ISTEP_11
 {
-
+#ifdef CONFIG_CENTAUR
 /**
  *  @brief   host_prd_hwreconfig
  *
@@ -209,6 +209,7 @@ void*  call_cen_startclocks( void    *io_pArgs );
  */
 void*  call_cen_scominits( void    *io_pArgs );
 
+#endif /* CONFIG_CENTAUR */
 
 };
 
@@ -222,6 +223,7 @@ const   TaskInfo    g_istep11[]  =   {
                 NULL,
                 { NONE, EXT_IMAGE, IPL_NOOP, false }
         },
+#ifdef CONFIG_CENTAUR
         {
                 ISTEPNAME(11,01,"host_prd_hwreconfig"),
                 ISTEP_11::call_host_prd_hwreconfig,
@@ -287,7 +289,7 @@ const   TaskInfo    g_istep11[]  =   {
                 ISTEP_11::call_cen_scominits,
                 { START_FN, EXT_IMAGE, NORMAL_IPL_OP, true }
         },
-
+#endif /* CONFIG_CENTAUR */
 };
 
 const DepModInfo g_istep11Dependancies = {

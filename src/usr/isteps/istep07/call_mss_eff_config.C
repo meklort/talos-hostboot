@@ -185,6 +185,7 @@ void*    call_mss_eff_config( void *io_pArgs )
     targetService().getTopLevelTarget(l_sys);
     assert( l_sys != nullptr );
 
+#ifdef CONFIG_CENTAUR
     // Get all Centaur targets
     TARGETING::TargetHandleList l_membufTargetList;
     getAllChips(l_membufTargetList, TYPE_MEMBUF);
@@ -358,6 +359,7 @@ void*    call_mss_eff_config( void *io_pArgs )
             }
         }
     }
+#endif /* CONFIG_CENTAUR */
 
     if(l_StepError.isNull())
     {
