@@ -111,7 +111,7 @@ errlHndl_t call_mss_eff_grouping(IStepError & io_istepErr)
     return l_err;
 }
 
-
+#ifdef CONFIG_CENTAUR
 errlHndl_t call_mss_eff_mb_interleave()
 {
     errlHndl_t l_err = NULL;
@@ -147,7 +147,7 @@ errlHndl_t call_mss_eff_mb_interleave()
     }
     return l_err;
 }
-
+#endif /* CONFIG_CENTAUR */
 
 //
 //  Wrapper function to call mss_eff_config
@@ -257,6 +257,7 @@ void*    call_mss_eff_config( void *io_pArgs )
     //    l_sys->
     //        setAttr<TARGETING::ATTR_MEM_MIRROR_PLACEMENT_POLICY>(l_mmPolicy);
     //}
+#endif /* CONFIG_CENTAUR */
 
     // Get all functional MCS chiplets
     TARGETING::TargetHandleList l_mcsTargetList;
@@ -293,6 +294,7 @@ void*    call_mss_eff_config( void *io_pArgs )
             "SUCCESS :  p9_mss_eff_config HWP");
     } // end membuf loop
 
+#ifdef CONFIG_CENTAUR
     if(l_StepError.isNull())
     {
         l_err = call_mss_eff_mb_interleave();
