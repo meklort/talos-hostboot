@@ -99,7 +99,11 @@ const  ExtTaskInfo  g_isteps[]    =   {
         INITSERVICE::g_istep08TaskList,                 //        IStep 8
         INITSERVICE::g_istep09TaskList,                 //        IStep 9
         INITSERVICE::g_istep10TaskList,                 //        IStep 10
+#ifdef CONFIG_CENTAUR
         INITSERVICE::g_istep11TaskList,                 //        IStep 11
+#else
+        { NULL, 0, NULL},                               //  dummy IStep 11
+#endif
         INITSERVICE::g_istep12TaskList,                 //        IStep 12
         INITSERVICE::g_istep13TaskList,                 //        IStep 13
         INITSERVICE::g_istep14TaskList,                 //        IStep 14
