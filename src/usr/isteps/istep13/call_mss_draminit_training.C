@@ -102,6 +102,7 @@ void* call_mss_draminit_training (void *io_pArgs)
         }
     }
 
+#ifdef CONFIG_CENTAUR
     if(l_stepError.getErrorHandle() == NULL)
     {
         // Get all Centaur targets
@@ -169,6 +170,7 @@ void* call_mss_draminit_training (void *io_pArgs)
         }
 
     }
+#endif /* CONFIG_CENTAUR */
 
     TRACFCOMP( ISTEPS_TRACE::g_trac_isteps_trace,
             "call_mss_draminit_training exit" );

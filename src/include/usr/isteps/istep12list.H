@@ -231,11 +231,13 @@ const   TaskInfo    g_istep12[]  =   {
                 ISTEP_12::call_proc_dmi_scominit,
                 { START_FN, EXT_IMAGE, NORMAL_IPL_OP, true }
         },
+#ifdef CONFIG_CENTAUR
         {
                 ISTEPNAME(12,04,"cen_dmi_scominit"),
                 ISTEP_12::call_cen_dmi_scominit,
                 { START_FN, EXT_IMAGE, NORMAL_IPL_OP, true }
         },
+#endif
         {
                 ISTEPNAME(12,05,"dmi_erepair"),
                 ISTEP_12::call_dmi_erepair,
@@ -261,11 +263,13 @@ const   TaskInfo    g_istep12[]  =   {
                 ISTEP_12::call_dmi_post_trainadv,
                 { START_FN, EXT_IMAGE, NORMAL_IPL_OP, true }
         },
+#ifdef CONFIG_CENTAUR
         {
                 ISTEPNAME(12,10,"proc_cen_framelock"),
                 ISTEP_12::call_proc_cen_framelock,
                 { START_FN, EXT_IMAGE, NORMAL_IPL_OP, true }
         },
+#endif
         {
                 ISTEPNAME(12,11,"host_startprd_dmi"),
                 ISTEP_12::call_host_startprd_dmi,

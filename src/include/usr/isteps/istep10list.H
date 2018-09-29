@@ -239,11 +239,13 @@ const   TaskInfo    g_istep10[]  =   {
                 NULL,
                 { NONE, EXT_IMAGE, IPL_NOOP, false }
         },
+#ifdef CONFIG_CENTAUR
         {
                 ISTEPNAME(10,04,"proc_cen_ref_clk_enable"),
                 ISTEP_10::call_proc_cen_ref_clk_enable,
                 { START_FN, EXT_IMAGE, NORMAL_IPL_OP, false }
         },
+#endif /* CONFIG_CENTAUR */
         {
                 ISTEPNAME(10,05,"proc_enable_osclite"),
                 ISTEP_10::call_proc_enable_osclite,

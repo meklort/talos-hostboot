@@ -102,7 +102,7 @@ void* call_mss_ddr_phy_reset (void *io_pArgs)
 
     } // end l_mcbist loop
 
-
+#ifdef CONFIG_CENTAUR
     if(l_stepError.getErrorHandle() == NULL)
     {
         // Get all Centaur targets
@@ -169,6 +169,7 @@ void* call_mss_ddr_phy_reset (void *io_pArgs)
  
         }
     }
+#endif /* CONFIG_CENTAUR */
 
     TRACFCOMP( ISTEPS_TRACE::g_trac_isteps_trace,
             "call_mss_ddr_phy_reset exit" );

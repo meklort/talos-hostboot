@@ -54,6 +54,7 @@ void* call_mss_thermal_init (void *io_pArgs)
     IStepError  l_StepError;
     errlHndl_t  l_errl  =   nullptr;
 
+#ifdef CONFIG_CENTAUR
     // -- Cumulus only ---
     // Get all Centaur targets
     TARGETING::TargetHandleList l_memBufTargetList;
@@ -98,6 +99,7 @@ void* call_mss_thermal_init (void *io_pArgs)
                        "SUCCESS : p9c_mss_thermal_init HWP( )" );
         }
     }
+#endif /* CONFIG_CENTAUR */
 
     // -- Nimbus only ---
     // Get all MCS targets
