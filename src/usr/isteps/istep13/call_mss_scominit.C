@@ -111,7 +111,8 @@ void* call_mss_scominit (void *io_pArgs)
             break;
         }
 
-         // Get all MBA targets
+#ifdef CONFIG_CENTAUR
+        // Get all MBA targets
         TARGETING::TargetHandleList l_membufTargetList;
         getAllChips(l_membufTargetList, TYPE_MEMBUF);
 
@@ -159,6 +160,7 @@ void* call_mss_scominit (void *io_pArgs)
         {
             break;
         }
+#endif /* CONFIG_CENTAUR */
 
     } while (0);
 

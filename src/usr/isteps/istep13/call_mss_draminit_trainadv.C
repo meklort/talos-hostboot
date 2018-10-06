@@ -91,6 +91,7 @@ void* call_mss_draminit_trainadv (void *io_pArgs)
                "SUCCESS :  p9_mss_draminit_trainingadv HWP( )" );
     }
 
+#ifdef CONFIG_CENTAUR
     if(l_stepError.getErrorHandle() == NULL)
     {
         // Get all Centaur targets
@@ -163,7 +164,7 @@ void* call_mss_draminit_trainadv (void *io_pArgs)
         }
 
     }
-
+#endif /* CONFIG_CENTAUR */
 
 
     TRACFCOMP( ISTEPS_TRACE::g_trac_isteps_trace,

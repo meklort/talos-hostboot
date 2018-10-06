@@ -194,6 +194,7 @@ void* call_proc_setup_bars (void *io_pArgs)
     }   // end if !l_errl
 
 #ifdef CONFIG_SECUREBOOT
+#ifdef CONFIG_CENTAUR
     // Assuming no errors, secure any Centaurs
     if ( l_stepError.isNull() )
     {
@@ -262,6 +263,7 @@ void* call_proc_setup_bars (void *io_pArgs)
         }
 
     }
+#endif /* CONFIG_CENTAUR */
 #endif
 
     if ( l_errl )

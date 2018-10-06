@@ -95,6 +95,7 @@ void* call_mss_power_cleanup (void *io_pArgs)
         }
     }
 
+#ifdef CONFIG_CENTAUR
     // -- Cumulus only
     // Get a list of all present Centaurs
     TargetHandleList l_presCentaurs;
@@ -169,6 +170,7 @@ void* call_mss_power_cleanup (void *io_pArgs)
                            l_currMBA0Huid, l_currMBA1Huid);
         }
     }
+#endif /* CONFIG_CENTAUR */
     TRACDCOMP( ISTEPS_TRACE::g_trac_isteps_trace,
             "call_mss_power_cleanup exit" );
 

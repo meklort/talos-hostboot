@@ -190,7 +190,7 @@ void* call_mss_draminit (void *io_pArgs)
     }   // endfor   mcbist's
 
 
-
+#ifdef CONFIG_CENTAUR
     if(l_stepError.getErrorHandle() == NULL)
     {
         // Get all Centaur targets
@@ -257,6 +257,7 @@ void* call_mss_draminit (void *io_pArgs)
         }
 
     }
+#endif /* CONFIG_CENTAUR */
 
     // call POST_DRAM_INIT function
     if(INITSERVICE::spBaseServicesEnabled())

@@ -106,6 +106,7 @@ void* call_mss_draminit_mc (void *io_pArgs)
     } // End; memBuf loop
 
 
+#ifdef CONFIG_CENTAUR
     if(l_stepError.getErrorHandle() == NULL)
     {
 
@@ -152,6 +153,7 @@ void* call_mss_draminit_mc (void *io_pArgs)
 
         }
     }
+#endif /* CONFIG_CENTAUR */
 
     TRACFCOMP( ISTEPS_TRACE::g_trac_isteps_trace, "call_mss_draminit_mc exit" );
 

@@ -31,7 +31,9 @@ SUBDIRS+=istep07.d
 SUBDIRS+=istep08.d
 SUBDIRS+=istep09.d
 SUBDIRS+=istep10.d
+ifdef CONFIG_CENTAUR
 SUBDIRS+=istep11.d
+endif
 SUBDIRS+=istep12.d
 SUBDIRS+=istep13.d
 SUBDIRS+=istep14.d
