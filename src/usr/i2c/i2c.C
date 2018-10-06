@@ -106,11 +106,13 @@ DEVICE_REGISTER_ROUTE( DeviceFW::WILDCARD,
                        TARGETING::TYPE_PROC,
                        i2cPerformOp );
 
+#ifdef CONFIG_CENTAUR
 // Register the generic I2C perform Op with the routing code for Memory Buffers.
 DEVICE_REGISTER_ROUTE( DeviceFW::WILDCARD,
                        DeviceFW::I2C,
                        TARGETING::TYPE_MEMBUF,
                        i2cPerformOp );
+#endif
 
 // ------------------------------------------------------------------
 // i2cPerformOp
@@ -238,11 +240,13 @@ DEVICE_REGISTER_ROUTE( DeviceFW::WILDCARD,
                        TARGETING::TYPE_PROC,
                        host_i2cPerformOp );
 
+#ifdef CONFIG_CENTAUR
 // Register the Host-based I2C perform Op with the routing code for Mem Buffers.
 DEVICE_REGISTER_ROUTE( DeviceFW::WILDCARD,
                        DeviceFW::HOSTI2C,
                        TARGETING::TYPE_MEMBUF,
                        host_i2cPerformOp );
+#endif
 
 // ------------------------------------------------------------------
 // host_i2cPerformOp
@@ -303,11 +307,13 @@ DEVICE_REGISTER_ROUTE( DeviceFW::WILDCARD,
                        TARGETING::TYPE_PROC,
                        fsi_i2cPerformOp );
 
+#ifdef CONFIG_CENTAUR
 // Register the FSI-based I2C perform Op with the routing code for Mem Buffers.
 DEVICE_REGISTER_ROUTE( DeviceFW::WILDCARD,
                        DeviceFW::FSI_I2C,
                        TARGETING::TYPE_MEMBUF,
                        fsi_i2cPerformOp );
+#endif
 
 // ------------------------------------------------------------------
 // fsi_i2cPerformOp
@@ -3230,6 +3236,7 @@ errlHndl_t i2cProcessActiveMasters ( i2cProcessType      i_processType,
                      procList.size() );
         }
 
+#ifdef CONFIG_CENTAUR
         // Get list of Membufs
         TARGETING::TargetHandleList membufList;
 
@@ -3251,12 +3258,14 @@ errlHndl_t i2cProcessActiveMasters ( i2cProcessType      i_processType,
                    INFO_MRK"i2cProcessActiveMasters: I2C Master Membufs: %d",
                    membufList.size() );
         }
+#endif /* CONFIG_CENTAUR */
 
         // Combine lists into chipList
         TARGETING::TargetHandleList chipList;
         chipList.insert(chipList.end(), procList.begin(), procList.end());
+#ifdef CONFIG_CENTAUR
         chipList.insert(chipList.end(), membufList.begin(), membufList.end());
-
+#endif
         // Get the Master Proc Chip Target for comparisons later
         TARGETING::TargetService& tS = TARGETING::targetService();
         TARGETING::Target* masterProcChipTargetHandle = NULL;
@@ -3947,13 +3956,14 @@ void getMasterInfo( const TARGETING::Target* i_chip,
          engine < I2C_BUS_ATTR_MAX_ENGINE;
          engine++ )
     {
+#ifdef CONFIG_CENTAUR
         // Only support engine 0 for centaur
         if ( ( engine != 0 ) &&
              ( l_type == TARGETING::TYPE_MEMBUF ) )
         {
             continue;
         }
-
+#endif
         MasterInfo_t info;
 
         //For P9, the base scom address for each i2c engine
@@ -4095,11 +4105,16 @@ void getDeviceInfo( TARGETING::Target* i_i2cMaster,
 
         TARGETING::PredicateCTM procChip(
             TARGETING::CLASS_CHIP,TARGETING::TYPE_PROC);
+#ifdef CONFIG_CENTAUR
         TARGETING::PredicateCTM membufChip(
             TARGETING::CLASS_CHIP,TARGETING::TYPE_MEMBUF);
-
+#endif
         TARGETING::PredicatePostfixExpr procOrMembuf;
+#ifdef CONFIG_CENTAUR
         procOrMembuf.push(&procChip).push(&membufChip).Or();
+#else
+        procOrMembuf.push(&procChip).Or();
+#endif
 
         TARGETING::targetService().getAssociated(
             chipTargets,
@@ -4123,6 +4138,7 @@ void getDeviceInfo( TARGETING::Target* i_i2cMaster,
         {
             pProc = pChipTarget;
         }
+#ifdef CONFIG_CENTAUR
         else
         {
             TARGETING::TargetHandleList affinityParentTargets;
@@ -4142,6 +4158,7 @@ void getDeviceInfo( TARGETING::Target* i_i2cMaster,
                 affinityParentTargets.size());
             pProc = affinityParentTargets[0];
         }
+#endif
         auto assocProc = pProc->getAttr<TARGETING::ATTR_POSITION>();
         assert(assocProc <= UINT8_MAX,"Proc position exceeded max for uint8_t");
 

@@ -218,6 +218,8 @@ errlHndl_t procPresenceDetect(DeviceFW::OperationType i_opType,
 
     return NULL;
 }
+
+#ifdef CONFIG_CENTAUR
 /**
  * @brief Performs a presence detect operation on a Membuf Chip.
  *
@@ -382,16 +384,18 @@ errlHndl_t membPresenceDetect(DeviceFW::OperationType i_opType,
 
     return NULL;
 }
-
+#endif /* CONFIG_CENTAUR */
 
 // Register as the presence detect for processor and memory buffers.
 DEVICE_REGISTER_ROUTE(DeviceFW::READ,
                       DeviceFW::PRESENT,
                       TARGETING::TYPE_PROC,
                       procPresenceDetect);
+#ifdef CONFIG_CENTAUR
 DEVICE_REGISTER_ROUTE(DeviceFW::READ,
                       DeviceFW::PRESENT,
                       TARGETING::TYPE_MEMBUF,
                       membPresenceDetect);
 
 };
+#endif
