@@ -396,5 +396,6 @@ DEVICE_REGISTER_ROUTE(DeviceFW::READ,
                       DeviceFW::PRESENT,
                       TARGETING::TYPE_MEMBUF,
                       membPresenceDetect);
-#endif
+
 };
+#endif
