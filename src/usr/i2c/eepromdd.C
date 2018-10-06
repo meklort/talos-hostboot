@@ -106,13 +106,11 @@ DEVICE_REGISTER_ROUTE( DeviceFW::WILDCARD,
                        TARGETING::TYPE_DIMM,
                        eepromPerformOp );
 
-#ifdef CONFIG_CENTAUR
 // Register the perform Op with the routing code for Memory Buffers.
 DEVICE_REGISTER_ROUTE( DeviceFW::WILDCARD,
                        DeviceFW::EEPROM,
                        TARGETING::TYPE_MEMBUF,
                        eepromPerformOp );
-#endif
 
 // Register the perform Op with the routing code for Nodes.
 DEVICE_REGISTER_ROUTE( DeviceFW::WILDCARD,
@@ -243,7 +241,6 @@ errlHndl_t eepromPerformOp( DeviceFW::OperationType i_opType,
                    i2cInfo.offset, io_buflen, l_snglChipSize,
                    i2cInfo.chipCount, i2cInfo.devSize_KB);
 
-#ifdef CONFIG_CENTAUR
 #ifdef __HOSTBOOT_RUNTIME
         // Disable Sensor Cache if the I2C master target is MEMBUF
         if( i2cMasterTarget->getAttr<TARGETING::ATTR_TYPE>() ==
@@ -256,7 +253,6 @@ errlHndl_t eepromPerformOp( DeviceFW::OperationType i_opType,
             }
         }
 #endif //__HOSTBOOT_RUNTIME
-#endif /* CONFIG_CENTAUR */
 
         // Do the read or write
         while(l_remainingOpLen > 0)
@@ -332,7 +328,6 @@ errlHndl_t eepromPerformOp( DeviceFW::OperationType i_opType,
         } // Do the read or write
     } while( 0 );
 
-#ifdef CONFIG_CENTAUR
 #ifdef __HOSTBOOT_RUNTIME
     // Re-enable sensor cache if it was disabled before the eeprom op and
     // the I2C master target is MEMBUF
@@ -356,7 +351,6 @@ errlHndl_t eepromPerformOp( DeviceFW::OperationType i_opType,
         }
     }
 #endif //__HOSTBOOT_RUNTIME
-#endif /* CONFIG_CENTAUR */
 
     // If there is an error, add parameter info to log
     if ( err != NULL )
@@ -2040,7 +2034,6 @@ void getEEPROMs( std::list<EepromInfo_t>& o_info )
         add_to_list( o_info, *proc_itr );
     }
 
-#ifdef CONFIG_CENTAUR
     // #3 - Membufs
     TARGETING::PredicateCTM membs( TARGETING::CLASS_CHIP,
                                    TARGETING::TYPE_MEMBUF,
@@ -2054,7 +2047,6 @@ void getEEPROMs( std::list<EepromInfo_t>& o_info )
     {
         add_to_list( o_info, *memb_itr );
     }
-#endif /* CONFIG_CENTAUR */
 
     // #4 - DIMMs
     TARGETING::PredicateCTM dimms( TARGETING::CLASS_LOGICAL_CARD,

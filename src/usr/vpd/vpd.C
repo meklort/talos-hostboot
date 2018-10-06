@@ -546,7 +546,6 @@ errlHndl_t getPnAndSnRecordAndKeywords( TARGETING::Target * i_target,
             io_keywordPN = MVPD::PN;
             io_keywordSN = MVPD::SN;
         }
-#ifdef CONFIG_CENTAUR
         else if( i_type == TARGETING::TYPE_MEMBUF )
         {
 #if defined(CONFIG_MEMVPD_READ_FROM_HW) && defined(CONFIG_MEMVPD_READ_FROM_PNOR)
@@ -591,7 +590,6 @@ errlHndl_t getPnAndSnRecordAndKeywords( TARGETING::Target * i_target,
             io_keywordSN = CVPD::SN;
 #endif
         }
-#endif /* CONFIG_CENTAUR */
         else if( i_type == TARGETING::TYPE_DIMM )
         {
             // SPD does not have singleton instance
@@ -1048,7 +1046,6 @@ errlHndl_t validateSharedPnorCache()
         addListToMap( l_recNumMap, l_nodeList);
 #endif
 
-#ifdef CONFIG_CENTAUR
         // If this system has mem bufs, then gather all mem bufs.
         // If there are no mem bufs, then gather the MCSs for direct memory.
         TARGETING::TargetHandleList l_memBufList;
@@ -1060,7 +1057,6 @@ errlHndl_t validateSharedPnorCache()
             addListToMap( l_recNumMap, l_memBufList);
         }
         else // Add cache status for all MCSs for direct memory
-#endif /* CONFIG_CENTAUR */
         {
             TARGETING::TargetHandleList l_mcsList;
             getChipletResources(l_mcsList,

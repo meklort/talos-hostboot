@@ -240,24 +240,21 @@ DEVICE_REGISTER_ROUTE(DeviceFW::READ,
                       DeviceFW::FSI,
                       TARGETING::TYPE_PROC,
                       ddOp);
-#ifdef CONFIG_CENTAUR
 DEVICE_REGISTER_ROUTE(DeviceFW::READ,
                       DeviceFW::FSI,
                       TARGETING::TYPE_MEMBUF,
                       ddOp);
-#endif
 
 // Register fsidd access functions to DD framework
 DEVICE_REGISTER_ROUTE(DeviceFW::WRITE,
                       DeviceFW::FSI,
                       TARGETING::TYPE_PROC,
                       ddOp);
-#ifdef CONFIG_CENTAUR
 DEVICE_REGISTER_ROUTE(DeviceFW::WRITE,
                       DeviceFW::FSI,
                       TARGETING::TYPE_MEMBUF,
                       ddOp);
-#endif
+
 
 /**
  * @brief Initialize the FSI hardware
